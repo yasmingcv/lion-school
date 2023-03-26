@@ -68,26 +68,78 @@ const getDadosAluno = function (matricula) {
 const getAlunosCurso = function (siglaCurso){
     let curso = siglaCurso.toUpperCase()
     let status = false
-    let alunosCurso = {}
+    let alunosArray = []
+    let alunosJson = {}
+
+    alunosJson.alunos = alunosArray
 
     alunos.forEach(function (aluno){
         if(aluno.curso[0].sigla == curso){
-            alunosCurso = aluno
-        }
+            let alunoJson = {}
 
+            alunoJson.nome = aluno.nome
+            alunoJson.foto = aluno.foto
+            alunoJson.curso = aluno.curso
+            alunoJson.matricula = aluno.matricula
+            alunoJson.sexo = aluno.sexo
+            alunoJson.status = aluno.status
+
+            alunosArray.push(alunoJson)
+
+            status = true
+        }
        
     })
 
-    return alunosCurso
+    if(status){
+        return alunosJson
+    } else {
+        return status
+    }
 
 }
 
+//Função que retorna os alunos com status especificado (Cursando/Finalizado)
+const getAlunosStatus = function (status) {
+    let statusAluno = status.toUpperCase()
+    let statusFun = false
+    let alunosArray = []
+    let alunosJson = {}
 
-console.log(getAlunosCurso('rds'))
+    alunosJson.alunos = alunosArray
 
+    alunos.forEach(function (aluno){
+        if(aluno.status.toUpperCase() == statusAluno){
+            let alunoJson = {}
+
+            alunoJson.nome = aluno.nome
+            alunoJson.foto = aluno.foto
+            alunoJson.curso = aluno.curso
+            alunoJson.matricula = aluno.matricula
+            alunoJson.sexo = aluno.sexo
+            alunoJson.status = aluno.status
+
+            alunosArray.push(alunoJson)
+
+            statusFun = true
+        }
+    })
+
+    if(statusFun){
+        return alunosJson
+    } else {
+        return false
+    }
+}
+
+
+console.log(getAlunosStatus('Finalizado'))
+console.log(getAlunosCurso('ds'))
 
 module.exports = {
     getCursos,
     getAlunos,
-    getDadosAluno
+    getDadosAluno,
+    getAlunosCurso,
+    getAlunosStatus
 }

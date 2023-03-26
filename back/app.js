@@ -111,8 +111,59 @@ app.get('/v1/lion-school/alunos/:matricula', cors(), async function (request, re
     next()
 })
 
+//EndPoint para listar alunos de determinado curso, filtrando pela sigla do curso *
+app.get('/v1/lion-school/alunos', cors(), async function (request, response, next){
+    let statusCode
+    let alunosCurso = {}
 
+    let nomeCurso = request.query.curso
 
+    if (nomeCurso == '' || nomeCurso == undefined ||  !isNaN(nomeCurso)) {
+        statusCode = 400
+        alunosCurso.message = 'Não foi possível processar pois os dados de entrada enviados não correspondem ao exigido.'
+    } else {
+        let alunos = funcoes.getAlunosCurso(nomeCurso)
+
+        if(alunos){
+            statusCode = 200
+            alunosCurso = alunos
+        } else {
+            statusCode = 404
+        }
+
+    }
+
+    response.status(statusCode)
+    response.json(alunosCurso)
+
+    next()
+
+})
+
+//EndPoint para filtrar alunos pelo status (Finalizado/Cursando) *
+app.get('/v1/lion-school/alunos', cors(), async function (request, response, next){
+    let statusCode
+    let alunos = {}
+
+    let statusAluno = request.query.status
+
+    if (statusAluno == '' || statusAluno == undefined ||  !isNaN(statusAluno)) {
+        statusCode = 400
+        alunos.message = 'Não foi possível processar pois os dados de entrada enviados não correspondem ao exigido.'
+    } else {
+        let alunosPorStatus = funcoes.getAlunosStatus(statusAluno)
+
+        if(alunosPorStatus){
+            statusCode = 200
+            alunos = alunosPorStatus
+        } else {
+            statusCode = 404
+        }
+    }
+
+    response.status(statusCode)
+    response.json(alunos)
+})
 
 
 //Roda o serviço da API para ficar aguardando requisições
