@@ -114,7 +114,7 @@ const getAlunosStatus = function (status) {
 
             alunoJson.nome = aluno.nome
             alunoJson.foto = aluno.foto
-            alunoJson.curso = aluno.curso[0].nome
+            alunoJson.curso = aluno.curso
             alunoJson.matricula = aluno.matricula
             alunoJson.sexo = aluno.sexo
             alunoJson.status = aluno.status
