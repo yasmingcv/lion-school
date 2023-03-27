@@ -14,7 +14,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 
 
-const funcoes = require('./modulo/funcoes.js')
+const funcoes = require('./back/modulo/funcoes.js')
 
 
 //Cria um objeto com as caracteristicas do express
