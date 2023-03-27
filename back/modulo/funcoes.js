@@ -114,7 +114,7 @@ const getAlunosStatus = function (status) {
 
             alunoJson.nome = aluno.nome
             alunoJson.foto = aluno.foto
-            alunoJson.curso = aluno.curso
+            alunoJson.curso = aluno.curso[0].nome
             alunoJson.matricula = aluno.matricula
             alunoJson.sexo = aluno.sexo
             alunoJson.status = aluno.status
@@ -133,8 +133,8 @@ const getAlunosStatus = function (status) {
 }
 
 
-console.log(getAlunosStatus('Finalizado'))
-console.log(getAlunosCurso('ds'))
+// console.log(getAlunosStatus('Finalizado'))
+// console.log(getAlunosCurso('ds'))
 
 module.exports = {
     getCursos,

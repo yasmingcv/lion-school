@@ -112,7 +112,7 @@ app.get('/v1/lion-school/alunos/:matricula', cors(), async function (request, re
 })
 
 //EndPoint para listar alunos de determinado curso, filtrando pela sigla do curso *
-app.get('/v1/lion-school/alunos', cors(), async function (request, response, next){
+app.get('/v1/lion-school/alunes', cors(), async function (request, response, next){
     let statusCode
     let alunosCurso = {}
 
@@ -136,12 +136,12 @@ app.get('/v1/lion-school/alunos', cors(), async function (request, response, nex
     response.status(statusCode)
     response.json(alunosCurso)
 
-    next()
+   
 
 })
 
 //EndPoint para filtrar alunos pelo status (Finalizado/Cursando) *
-app.get('/v1/lion-school/alunos', cors(), async function (request, response, next){
+app.get('/v1/lion-school/alunus', cors(), async function (request, response, next){
     let statusCode
     let alunos = {}
 
