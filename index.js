@@ -123,8 +123,6 @@ app.get('/v1/lion-school/alunos', cors(), async function (request, response, nex
 
     } 
 
-
-
     response.json(alunosJson)
     response.status(statusCode)
 

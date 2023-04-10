@@ -97,7 +97,7 @@ const getAlunosCurso = function (siglaCurso){
     if(status){
         return alunosJson
     } else {
-        return false
+        return status
     }
 
 }
