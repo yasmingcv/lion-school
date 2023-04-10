@@ -101,6 +101,7 @@ app.get('/v1/lion-school/alunos', cors(), async function (request, response, nex
             alunosJson = alunos
         } else {
             statusCode = 404
+            alunosJson.message = 'Não foi possível obter uma resposta.'
         }
 
 
@@ -116,6 +117,7 @@ app.get('/v1/lion-school/alunos', cors(), async function (request, response, nex
             alunosJson = alunosPorStatus
         } else {
             statusCode = 404
+            alunosJson.message = 'Não foi possível obter uma resposta.'
         }
 
 
@@ -147,6 +149,7 @@ app.get('/v1/lion-school/alunos/:matricula', cors(), async function (request, re
             dadosAluno = dados
         } else {
             statusCode = 404
+            dadosAluno.message = 'Não foi possível processar pois os dados de entrada enviados não correspondem ao exigido.'
         }
     }
 

@@ -43,6 +43,9 @@ const getAlunos = function () {
     }
 }
 
+
+
+
 //Função que retorna dados de um aluno específico com base no número da matrícula
 const getDadosAluno = function (matricula) {
     let numeroMatricula = matricula
