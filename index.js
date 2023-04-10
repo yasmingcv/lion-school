@@ -64,7 +64,7 @@ app.get('/v1/lion-school/cursos', cors(), async function (request, response, nex
 //EndPoint para listar os alunos, dependendo se possui filtro ou não
 app.get('/v1/lion-school/alunos', cors(), async function (request, response, next) {
     let statusCode
-    let alunosJson = false
+    let alunosJson = {}
 
     let nomeCurso = request.query.curso
     let statusAluno = request.query.status
@@ -80,7 +80,7 @@ app.get('/v1/lion-school/alunos', cors(), async function (request, response, nex
     //Se não possui query, retorna todos os alunos
     else if (nomeCurso == undefined && statusAluno == undefined) {
 
-        alunosJson = {}
+        
         let alunos = funcoes.getAlunos()
 
         if (alunos) {
@@ -100,7 +100,6 @@ app.get('/v1/lion-school/alunos', cors(), async function (request, response, nex
             statusCode = 200
             alunosJson = alunos
         } else {
-            alunosJson = {}
             statusCode = 404
             alunosJson.message = 'Não foi possível obter uma resposta.'
         }
