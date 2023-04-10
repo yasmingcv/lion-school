@@ -100,6 +100,7 @@ app.get('/v1/lion-school/alunos', cors(), async function (request, response, nex
             statusCode = 200
             alunosJson = alunos
         } else {
+            alunosJson = {}
             statusCode = 404
             alunosJson.message = 'Não foi possível obter uma resposta.'
         }
