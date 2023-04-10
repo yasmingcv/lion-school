@@ -80,7 +80,6 @@ app.get('/v1/lion-school/alunos', cors(), async function (request, response, nex
     //Se não possui query, retorna todos os alunos
     else if (nomeCurso == undefined && statusAluno == undefined) {
 
-        
         let alunos = funcoes.getAlunos()
 
         if (alunos) {
