@@ -135,7 +135,39 @@ const getAlunosStatus = function (status) {
     }
 }
 
+const getAlunosAno = function (ano) {
+    let status = false 
+    let alunosArray = []
+    let alunosJson = {}
 
+    alunosJson.alunos = alunosArray
+
+    alunos.forEach(function (aluno) {
+        if(aluno.curso[0].conclusao == ano){
+            let alunoJson = {}
+
+            alunoJson.nome = aluno.nome
+            alunoJson.foto = aluno.foto
+            alunoJson.curso = aluno.curso
+            alunoJson.matricula = aluno.matricula
+            alunoJson.sexo = aluno.sexo
+            alunoJson.status = aluno.status
+            alunoJson.conclusao = aluno.curso[0].conclusao
+
+            alunosArray.push(alunoJson)
+
+            status = true
+        }
+    })
+
+    if(status){
+        return alunosJson
+    }else{
+        return false
+    }
+}
+
+// console.log(getAlunosAno(2023));
 // console.log(getAlunosStatus('Finalizado'))
 // console.log(getAlunosCurso('ds'))
 
@@ -144,5 +176,6 @@ module.exports = {
     getAlunos,
     getDadosAluno,
     getAlunosCurso,
-    getAlunosStatus
+    getAlunosStatus,
+    getAlunosAno
 }

@@ -68,6 +68,7 @@ app.get('/v1/lion-school/alunos', cors(), async function (request, response, nex
 
     let nomeCurso = request.query.curso
     let statusAluno = request.query.status
+    let anoConclusao = request.query.ano
 
 
      if ( !isNaN(statusAluno) || !isNaN(nomeCurso) || statusAluno == '' || nomeCurso == ''){
@@ -78,7 +79,7 @@ app.get('/v1/lion-school/alunos', cors(), async function (request, response, nex
     } 
     
     //Se não possui query, retorna todos os alunos
-    else if (nomeCurso == undefined && statusAluno == undefined) {
+    else if (nomeCurso == undefined && statusAluno == undefined && anoConclusao == undefined) {
 
         let alunos = funcoes.getAlunos()
 
@@ -120,7 +121,17 @@ app.get('/v1/lion-school/alunos', cors(), async function (request, response, nex
         }
 
 
-    } 
+    } else if (anoConclusao) {
+        let alunos = funcoes.getAlunosAno(anoConclusao)
+
+        if (alunos) {
+            statusCode = 200
+            alunosJson = alunos
+        } else {
+            statusCode = 404
+            alunosJson.message = 'Não foi possível obter uma resposta.'
+        }   
+    }
 
     response.json(alunosJson)
     response.status(statusCode)
